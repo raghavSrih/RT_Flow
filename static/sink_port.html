@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="bower_components/adapter.js/adapter.js"></script>
+
+    <script src="bower_components/kurento-utils/js/kurento-utils.js"></script>
+    <script src="js/sink_mqtt.js"></script>
+    <title>Kurento composite node example</title>
+    <style>
+        body {
+            background-color: black;
+            width: 100%;
+        }
+
+        #video {
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            transform: rotate(270deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div id="videoBig" style="width: 100%;">
+            <video id="video" autoplay style="width: 30%;margin-left: 450px;margin-top: 400px" poster="img/webrtc.png"></video>
+        </div>
+        <br><br>
+        <div id="input-group">
+            <a id="call" href="#" class="btn btn-success" onclick="start(); return false;">
+                <span class="glyphicon glyphicon-play"></span> Start
+            </a>
+            <a id="terminate" href="#" class="btn btn-danger" onclick="stop(); return false;">
+                <span class="glyphicon glyphicon-stop"></span> Stop
+            </a>
+        </div>
+    </div>
+
+</body>
+
+</html>

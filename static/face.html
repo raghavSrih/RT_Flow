@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="cache-control" content="no-cache">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta http-equiv="expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/socket.io.js"></script>
+    <script src="lib/jquery-ui.js"></script>
+    <script src="bower_components/adapter.js/adapter.js"></script>
+
+    <script src="bower_components/kurento-utils/js/kurento-utils.js"></script>
+    <script src="js/face_sink.js"></script>
+    
+
+    <link rel="stylesheet" href="css/call_anime.css">
+
+    <script type="text/javascript" src="js/symple.js"></script>
+    <script type="text/javascript" src="js/symple.client.js"></script>
+
+    <title>Kurento composite node example</title>
+    <style>
+        body {
+            background-color: black;
+            width: 100%;
+        }
+
+        #video {
+            -webkit-transform: rotate(270deg);
+            -moz-transform: rotate(270deg);
+            -o-transform: rotate(270deg);
+            -ms-transform: rotate(270deg);
+            transform: rotate(270deg);
+            z-index: -1;
+        }
+        #overlay {
+            position: fixed;
+            width: 40%;
+            height: 20%;
+            top: 525px;
+            left: 280px;
+            background-color: black;
+            z-index: 2;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        $( function() {
+            $( "#anime" ).draggable();
+            $( "#video" ).draggable();
+        } );
+
+        
+    </script>
+</head>
+
+<body>
+    <div>
+            <div id="anime" class="skype"></div>
+        <div id="videoBig" style="width: 100%;">
+            
+            <video id="video" autoplay style="display:none;width: 35%; margin-left: -170px;margin-top: -15px"></video>
+            
+        </div>
+        
+        <br><br>
+    </div>
+    <div id="overlay"></div>
+</body>
+
+</html>

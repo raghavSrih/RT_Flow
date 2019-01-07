@@ -1,0 +1,72 @@
+body {
+background: rgb(19, 35, 44);
+padding-left: 580px;
+padding-top: 300px;
+overflow-x: hidden;
+overflow-y: hidden;
+}
+
+.skype {
+background: #fff;
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+-ms-backface-visibility: hidden;
+backface-visibility: hidden;
+width: 100px;
+height: 100px;
+position: absolute;
+margin: 0 auto;
+border-radius: 50px;
+border: solid 15px #fff;
+animation: play 1.5s ease infinite;
+-webkit-backface-visibility: hidden;
+-moz-backface-visibility: hidden;
+-ms-backface-visibility: hidden;
+backface-visibility: hidden;
+}
+.skype:before {
+background: #fff;
+content: "";
+width: 33px;
+height: 04px;
+position: absolute;
+top: 13px;
+right: 16px;
+border-radius: 10px;
+border: solid 15px #fff;
+z-index: 99998;
+transform: rotate(45deg);
+transform-origin: bottom;
+}
+.skype:after {
+background: #43B598;
+background-size: 100% 100%;
+content: "V";
+line-height: 105px;
+color: #fff;
+font-size: 50px;
+font-family: "Arial Rounded MT Bold", "Helvetica Rounded", Arial, sans-serif;
+font-weight: bold;
+text-align: center;
+width: 100px;
+height: 100px;
+margin: 0 auto;
+position: absolute;
+border-radius: 50px;
+z-index: 99999 !important;
+}
+
+@keyframes play {
+0% {
+transform: scale(1);
+}
+15% {
+box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2);
+}
+25% {
+box-shadow: 0 0 0 20px rgba(255, 255, 255, 0.2), 0 0 0 40px rgba(255, 255, 255, 0.2);
+}
+30% {
+transform: scale(1.2);
+}   
+}
