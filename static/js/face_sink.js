@@ -5,11 +5,12 @@ var state = null;
 var source = [];
 var myUniqueId = "face_sink";
 
-var reqName = "face@raspberrypi";	
-//var reqName = "face@ml-XPS-15-9550";
+//var reqName = "face@raspberrypi";	
+var reqName = "hands@pi";
 
 const I_CAN_START = 1;
-window.onload = function() {
+window.onload = loadPage;
+function loadPage() {
 
 	var animeDiv = document.getElementById('anime');
 
@@ -37,7 +38,7 @@ window.onload = function() {
 			video.style.display = "block";
 	  };
 
-	  start();
+	start();
 }
 
 window.onbeforeunload = function() {
@@ -93,7 +94,7 @@ function start() {
 		var constraints = {
 			audio: false, 
 			video: {  
-					mandatory: {  minWidth: 1920,  minHeight: 1080}
+				mandatory: {  minWidth: 1280,  minHeight: 720}
 			}
 		}	
 		var options = {

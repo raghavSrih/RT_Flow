@@ -70,22 +70,12 @@ app.use(express.static(__dirname + '/static/assets'));
 app.use(express.static(__dirname + '/node_modules'));
 app.use(express.static(__dirname + '/static'));
 
-//var asUrl = url.parse(argv.as_uri);
-//var port = asUrl.port;
-var server = https.createServer(options, app).listen(app.get('port'), function() {
-    console.log('Kurento Tutorial started');
-    console.log('Open https://localhost:' + app.get('port') + ' with a WebRTC capable browser');
-});
 
 var server_http = http.createServer(app).listen(4488, function() {
     console.log('Kurento Tutorial started');
     console.log('Open http://localhost:' + 4488 + ' with a WebRTC capable browser');
 });
 
-var wss = new ws.Server({
-    server : server,
-    path : '/one2many'
-});
 
 var wss_http = new ws.Server({
     server : server_http,
@@ -96,74 +86,6 @@ function nextUniqueId() {
 	idCounter++;
 	return idCounter.toString();
 }
-
-/*
- * Management of WebSocket messages
- */
-wss.on('connection', function(ws) {
-
-	var sessionId = nextUniqueId();
-	console.log('Connection received with sessionId ' + sessionId);
-
-    ws.on('error', function(error) {
-        console.log('Connection ' + sessionId + ' error');
-        stop(sessionId);
-    });
-
-    ws.on('close', function() {
-        console.log('Connection ' + sessionId + ' closed');
-        stop(sessionId);
-    });
-
-    ws.on('message', function(_message) {
-        var message = JSON.parse(_message);
-        console.log('Connection ' + sessionId + ' received message ', message);
-
-        switch (message.id)
-        {
-            case 'client':
-                addClient(ws,message.uid, message.name, message.sdpOffer, function(error, sdpAnswer) {
-                    if (error) {
-                        return ws.send(JSON.stringify({
-                            id : 'response',
-                            response : 'rejected',
-                            message : error
-                        }));
-                    }
-                    ws.send(JSON.stringify({
-                        id : 'response',
-                        response : 'accepted',
-                        sdpAnswer : sdpAnswer
-                    }));
-                });
-                break;
-
-            case 'stop':
-                stop(sessionId);
-                break;
-
-            case 'switchSource':
-                switchSource(message.sourceId, message.sinkId, function(error) {
-                    ws.send(JSON.stringify({
-                        id : 'error',
-                        message : 'Invalid Ids ' + message
-                    }));
-                });
-                break;
-
-            case 'onIceCandidate':
-                onIceCandidate(message.uid, message.candidate);
-                break;
-        
-            default:
-                    ws.send(JSON.stringify({
-                        id : 'error',
-                        message : 'Invalid message ' + message
-                    }));
-                    break;
-        }
-    });
-});
 
 wss_http.on('connection', function(ws) {
 
@@ -380,13 +302,6 @@ function addClient( ws, id, name, sdp, callback ) {
             clients[id].hubPort.connect(clients[id].webRtcEndpoint);
             // Initially, sink is connected to source of same client
             //dispatcher.connect(clients[id].hubPort, clients[id].hubPort);
-            wss.clients.forEach(function each(client) {
-                client.send(JSON.stringify({
-                    'id' : 'newSource',
-                    'name': name,
-                    'sourceId' : id
-                }));
-             });
 
              wss_http.clients.forEach(function each(client) {
                 client.send(JSON.stringify({
@@ -401,10 +316,8 @@ function addClient( ws, id, name, sdp, callback ) {
 
 function switchSource(sourceClientId, sinkClientId) {
     if(clients[sourceClientId] && clients[sinkClientId]) {
-        console.log("Switching source 1", clients[sourceClientId]);
-        console.log("Switching source 2", clients[sinkClientId]);
-        console.log("sourceTypes", typeof sourceClientId);
-        console.log("sourceTypes", typeof sinkClientId);
+        console.log("Switching source 1", sourceClientId);
+        console.log("Switching source 2", sinkClientId);
 
         dispatcher.connect(clients[sourceClientId].hubPort, clients[sinkClientId].hubPort);
     }

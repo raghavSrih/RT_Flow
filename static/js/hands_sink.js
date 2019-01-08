@@ -5,10 +5,12 @@ var state = null;
 var source = [];
 var myUniqueId = "hands_sink";
 
-var reqName = "hands@pi";
+var reqName = "face@raspberrypi";	
+//var reqName = "hands@pi";
 
 const I_CAN_START = 1;
-window.onload = function() {
+window.onload = loadPage;
+function loadPage() {
 	video = document.getElementById('video');
 
 	video.addEventListener('loadedmetadata', function() {
