@@ -251,6 +251,9 @@ $(document).ready(function() {
                 source.push(id);
                 $('#input-group').append('<a id="'+id+'" href="#" class="btn btn-success" onclick="startSource(this.id); return false;"> <span class="glyphicon glyphicon-play"></span> ' +id+ ' </a>');
             }
+            if(source.length == 2) {
+                startSocialCooking();
+            }
         }
         
         function startSource(id) {
