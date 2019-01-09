@@ -104,7 +104,7 @@ $(document).ready(function() {
 
         // Symple client options
         CLIENT_OPTIONS = {
-            url: 'http://192.168.1.233:4500',
+            url: 'http://192.168.1.209:4500',
             // secure: true,
             peer: {
                 user: 'app',
@@ -247,7 +247,7 @@ $(document).ready(function() {
             if(myId === null) {
                 myId = id;
             }
-            if( !(source.includes(id))) {
+            if( !(source.indexOf(id) > -1)) {
                 source.push(id);
                 $('#input-group').append('<a id="'+id+'" href="#" class="btn btn-success" onclick="startSource(this.id); return false;"> <span class="glyphicon glyphicon-play"></span> ' +id+ ' </a>');
             }
