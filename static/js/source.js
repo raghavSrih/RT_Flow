@@ -104,7 +104,7 @@ $(document).ready(function() {
 
         // Symple client options
         CLIENT_OPTIONS = {
-            url: 'http://192.168.1.233:4500',
+            url: 'http://192.168.1.209:4500',
             // secure: true,
             peer: {
                 user: 'app',
