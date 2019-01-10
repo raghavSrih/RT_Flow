@@ -182,8 +182,9 @@ $(document).ready(function() {
                 }
             }
             startStreaming(temp[0]);
+            startStreaming(temp[1]);
             setTimeout(function () {
-                startStreaming(temp[1]);
+                //startStreaming(temp[1]);
             }, 5000);
         }
 
@@ -252,7 +253,10 @@ $(document).ready(function() {
                 $('#input-group').append('<a id="'+id+'" href="#" class="btn btn-success" onclick="startSource(this.id); return false;"> <span class="glyphicon glyphicon-play"></span> ' +id+ ' </a>');
             }
             if(source.length == 2) {
-                startSocialCooking();
+                setTimeout(function () {
+                    startSocialCooking();
+                }, 5000);
+                
             }
         }
         
