@@ -182,10 +182,10 @@ $(document).ready(function() {
                 }
             }
             startStreaming(temp[0]);
-            startStreaming(temp[1]);
+            //startStreaming(temp[1]);
             setTimeout(function () {
-                //startStreaming(temp[1]);
-            }, 5000);
+                startStreaming(temp[1]);
+            }, 4000);
         }
 
         var onClickSource = function(id) {
