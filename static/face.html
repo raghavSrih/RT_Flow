@@ -36,7 +36,7 @@
             -o-transform: rotate(270deg);
             -ms-transform: rotate(270deg);
             transform: rotate(270deg);
-            z-index: -1;
+            z-index: 0;
         }
         #overlay {
             position: fixed;
@@ -48,11 +48,21 @@
             z-index: 2;
             cursor: pointer;
         }
+        #draggable {
+            z-index: -1;
+            position: absolute;
+            top: 80px;
+            right: -500px;
+        }
+        #anime {
+            z-index: 1;
+        }
     </style>
     <script>
         $( function() {
-            $( "#anime" ).draggable();
-            $( "#video" ).draggable();
+            //$( "#anime" ).draggable();
+            //$( "#video" ).draggable();
+            //$( "#draggable" ).draggable();
         } );
 
         
@@ -63,7 +73,7 @@
     <div>
             <div id="anime" class="skype"></div>
         <div id="videoBig" style="width: 100%;">
-            
+            <img id="draggable" src="http://192.168.1.9:7070/webcontent/fair/img/themes/Abstract/Abstract_CV.jpg"></img>
             <video id="video" autoplay style="display:none;width: 35%; margin-left: -170px;margin-top: -15px"></video>
             
         </div>
