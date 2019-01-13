@@ -33,8 +33,8 @@ console.log('Symple server listening on port ' + sy.config.port);
 
 var argv = minimist(process.argv.slice(2), {
     default: {
-		as_uri: 'https://192.168.1.209:8443/',
-        ws_uri: 'ws://192.168.1.209:8888/kurento'
+		as_uri: 'https://192.168.2.209:8443/',
+        ws_uri: 'ws://192.168.2.209:8888/kurento'
     }
 });
 
