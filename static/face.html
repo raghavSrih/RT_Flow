@@ -70,7 +70,12 @@
 </head>
 
 <body>
-    <div>
+        <div id="projectionsurface" style="width:100%;position:absolute;top:0px">
+        
+                <!-- VAA Container for images -->
+                <img id="sk_theme-img" src="" width="100%" class="img-responsive sk-img" alt="Image">
+        <div>
+
             <div id="anime" class="skype"></div>
         <div id="videoBig" style="width: 100%;">
             <img id="draggable" src="http://192.168.2.9:7070/webcontent/fair/img/themes/Abstract/Abstract_CV.jpg"></img>
@@ -81,6 +86,17 @@
         <br><br>
     </div>
     <div id="overlay"></div>
+
+<script type="text/javascript" src="js/vaaController.js"></script>
+<script type="text/javascript" src="js/eventHandler.js"></script>
+<script>
+    $(document).ready(function() {
+      vaaController.init("CV");
+      Android.sendData("{'meschup': "+"'get-update'"+"}"); 
+    });
+</script>
 </body>
+
+
 
 </html>
